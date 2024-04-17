@@ -16,11 +16,10 @@ export class SqsLambdaStack extends cdk.Stack {
     const lambdaFunction = new NodejsFunction(this, "Function", {
       entry: "handlers/index.ts",
       functionName: "handler",
-      runtime: lambda.Runtime.NODEJS_20_X,
+      runtime: lambda.Runtime.NODEJS_18_X,
     });
 
     const eventSource = new lambdaEventSources.SqsEventSource(queue);
-
     lambdaFunction.addEventSource(eventSource);
 
     new cdk.CfnOutput(this, "SQSqueueURL", {
